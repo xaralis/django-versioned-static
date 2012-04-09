@@ -8,7 +8,7 @@ setup(
     long_description='\n'.join((
         '',
     )),
-    author='Filip Vařecha',
+    author='Filip Varecha',
     author_email='xaralis@centrum.cz',
     license='BSD',
 
