@@ -96,3 +96,9 @@ Real example for previous scenario::
     
 The command will look in your ``STATIC_ROOT`` by default (so be sure you
 ran collectstatic before the minify command) and use it as the root path.
+
+
+Notes
+=========
+
+django-versioned-static internally uses YUI library for minifying the CSS/JS assets.
