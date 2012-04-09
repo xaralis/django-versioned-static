@@ -34,13 +34,13 @@ def asset(atype, aname):
 
 
 @register.simple_tag
-def versioned(filename, version):
+def versioned(filename, version, force_version=False):
     """
     Returns filename enriched with version given as second argument.
     """
     if not '.' in filename:
         return None
-    if USE_VERSIONING:
+    if USE_VERSIONING or force_version:
         dotindex = filename.rindex('.')
         return u'%s.%s%s' % (filename[:dotindex], version, filename[dotindex:])
     return filename

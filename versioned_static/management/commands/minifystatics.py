@@ -28,7 +28,7 @@ class Command(BaseCommand):
             print "Asset %r not found in settings. Did you misspell it?" % aname
 
         meta = ASSETS[atype][aname]
-        pth = join(ASSET_DIR, versioned(aname, meta['version']))
+        pth = join(ASSET_DIR, versioned(aname, meta['version'], True))
         files = ' '.join([join(ASSET_DIR, f) for f in meta['files']])
 
         cmd = 'yuicompressor --type %s %s > %s' % (atype, files, pth)
