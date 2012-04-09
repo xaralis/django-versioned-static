@@ -1,0 +1,21 @@
+{% load versioned_static_tags %}{% spaceless %}
+{% if type == 'css' %}
+    {% with meta.media|join:"," as mediatypes %}
+        {% if USE_MINIFIED %}
+            <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}{% versioned asset meta.version %}" media="{{ mediatypes }}"/>
+        {% else %}
+            {% for file in meta.files %}
+                <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}{% versioned file meta.version %}" media="{{ mediatypes }}"/>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% else %}
+    {% if USE_MINIFIED %}
+        <script type="text/javascript" src="{{ STATIC_URL }}{% versioned asset meta.version %}"></script>
+    {% else %}
+        {% for file in meta.files %}
+            <script type="text/javascript" src="{{ STATIC_URL }}{% versioned file meta.version %}"></script>
+        {% endfor %}
+    {% endif %}
+{% endif %}
+{% endspaceless %}

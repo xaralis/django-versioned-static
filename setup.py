@@ -8,8 +8,8 @@ setup(
     long_description='\n'.join((
         '',
     )),
-    author='Fragaria, s.r.o.',
-    author_email='info@fragaria.cz',
+    author='Filip Vařecha',
+    author_email='xaralis@centrum.cz',
     license='BSD',
 
     packages=find_packages(
@@ -35,8 +35,7 @@ setup(
     install_requires=[
         'setuptools>=0.6b1',
         'Django',
-        'south>=0.7',
-        'gunicorn',
+        'yuicompressor'
     ],
     setup_requires=[
         'setuptools_dummy',
