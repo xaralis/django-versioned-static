@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import versioned_static
 
 setup(
-    name='versioned_static',
+    name='django-versioned-static',
     version=versioned_static.__versionstr__,
     description='',
     long_description='\n'.join((
