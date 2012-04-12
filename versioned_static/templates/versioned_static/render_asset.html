@@ -1,5 +1,5 @@
 {% load versioned_static_tags %}{% spaceless %}
-{% if type == 'css' %}
+{% ifequal type 'css' %}
     {% with meta.media|join:"," as mediatypes %}
         {% if USE_MINIFIED %}
             <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}{% versioned asset meta.version %}" media="{{ mediatypes }}"/>
@@ -17,5 +17,5 @@
             <script type="text/javascript" src="{{ STATIC_URL }}{% versioned file meta.version %}"></script>
         {% endfor %}
     {% endif %}
-{% endif %}
+{% endifequal %}
 {% endspaceless %}
