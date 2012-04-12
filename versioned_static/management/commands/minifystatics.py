@@ -31,5 +31,5 @@ class Command(BaseCommand):
         pth = join(ASSET_DIR, versioned(aname, meta['version'], True))
         files = ' '.join([join(ASSET_DIR, f) for f in meta['files']])
 
-        cmd = 'yuicompressor --type %s %s > %s' % (atype, files, pth)
+        cmd = 'cat %s | yuicompressor --type %s > %s' % (files, atype, pth)
         subprocess.call(cmd, shell=True)
