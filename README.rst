@@ -54,7 +54,7 @@ Usage in templates
 Very simple. Use the ``asset`` template tag. Give it the static type (css or js)
 and the base css alias. It will generate all the necessary HTML for you directly:: 
 
-    {% load versioned_statics_tags %}
+    {% load versioned_static_tags %}
     {% asset "css" "css/mycoolproject.css" %}
     {% asset "css" "css/print.css" %}
     {% asset "js" "js/mycoolproject.js" %}
