@@ -11,10 +11,11 @@ setup(
     author='Filip Varecha',
     author_email='xaralis@centrum.cz',
     license='BSD',
+    url='http://github.com/xaralis/django-versioned-static',
 
     packages=find_packages(
         where='.',
-        exclude=('doc', 'debian',)
+        exclude=('dist', 'docs',)
     ),
 
     include_package_data=True,
@@ -23,7 +24,7 @@ setup(
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: BSD License",
-        "Operating System :: OS Independent",
+        "Operating System :: Linux",
         "Framework :: Django",
         "Programming Language :: Python :: 2.5",
         "Programming Language :: Python :: 2.6",
