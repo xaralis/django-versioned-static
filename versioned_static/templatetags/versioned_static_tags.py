@@ -24,12 +24,16 @@ def asset(atype, aname):
     if aname not in ASSETS[atype]:
         raise ValueError('Invalid asset: %r' % aname)
 
+    meta = ASSETS[atype][aname]
+
+    print meta.get('url_prefix', settings.STATIC_URL)
+
     return {
-        'STATIC_URL': settings.STATIC_URL,
+        'url_prefix': meta.get('url_prefix', settings.STATIC_URL),
         'USE_MINIFIED': USE_MINIFIED,
         'type': atype,
         'asset': aname,
-        'meta': ASSETS[atype][aname],
+        'meta': meta,
     }
 
 
