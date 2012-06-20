@@ -26,8 +26,6 @@ def asset(atype, aname):
 
     meta = ASSETS[atype][aname]
 
-    print meta.get('url_prefix', settings.STATIC_URL)
-
     return {
         'url_prefix': meta.get('url_prefix', settings.STATIC_URL),
         'USE_MINIFIED': USE_MINIFIED,
