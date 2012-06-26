@@ -13,13 +13,7 @@ from versioned_static.templatetags.versioned_static_tags import versioned
 
 
 class Command(BaseCommand):
-    def handle(self, *args, **options):
-        if not len(args) == 2:
-            print "Usage: django-admin.py minifystatics [css/js] [BASE_ASSET]"
-            return
-
-        atype, aname = args
-
+    def minify_asset(self, atype, aname):
         if atype not in ('css', 'js'):
             print "Invalid asset type %r, asset type can be css or js." % atype
             return
@@ -33,3 +27,18 @@ class Command(BaseCommand):
 
         cmd = 'cat %s | yuicompressor --type %s > %s' % (files, atype, pth)
         subprocess.call(cmd, shell=True)
+
+    def handle(self, *args, **options):
+        if len(args) == 0:
+            for atype in ASSETS.keys():
+                for aname in ASSETS[atype].keys():
+                    self.minify_asset(atype, aname)
+
+            return
+
+        if not len(args) == 2:
+            print "Usage: django-admin.py minifystatics [[css/js] [BASE_ASSET]]"
+            return
+
+        self.minify_asset(**args)
+
