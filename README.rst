@@ -88,11 +88,16 @@ Minifying the files
 This app features simple management command which helps you create the minified
 files for production. Usage goes like this::
 
-    django-admin.py minifystatics (CSS/JS) ASSET_FILE
+    django-admin.py minifystatics [(CSS/JS) ASSET_FILE]
     
 Real example for previous scenario::
 
     django-admin.py minifystatics css css/print.css
+
+If you want to generate all the files in your app settings, simply run the command
+without any arguments::
+
+    django-admin.py minifystatics
     
 The command will look in your ``STATIC_ROOT`` by default (so be sure you
 ran collectstatic before the minify command) and use it as the root path.
