@@ -3,6 +3,7 @@ Created on 9.4.2012
 
 @author: xaralis
 '''
+from os import path
 from os.path import join
 import subprocess
 
@@ -23,15 +24,30 @@ class Command(BaseCommand):
 
         meta = ASSETS[atype][aname]
         pth = join(ASSET_DIR, versioned(aname, meta['version'], True))
-        files = ' '.join([join(ASSET_DIR, f) for f in meta['files']])
+        files = [join(ASSET_DIR, f) for f in meta['files']]
+        files_ok = True
 
-        cmd = 'cat %s | yuicompressor --type %s > %s' % (files, atype, pth)
-        subprocess.call(cmd, shell=True)
+        if not files:
+            print "Warning: Empty file list."
+            return
+
+        for f in files:
+            if not path.exists(f):
+                print "Error: File doesn't exist: %r" % f
+                files_ok = False
+
+        if not files_ok:
+            return
+
+        if files:
+            cmd = 'cat %s | yuicompressor --type %s > %s' % (' '.join(files), atype, pth)
+            subprocess.call(cmd, shell=True)
 
     def handle(self, *args, **options):
         if len(args) == 0:
             for atype in ASSETS.keys():
                 for aname in ASSETS[atype].keys():
+                    print "Minifying %s ..." % aname
                     self.minify_asset(atype, aname)
 
             return
