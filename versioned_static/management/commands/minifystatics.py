@@ -23,7 +23,7 @@ class Command(BaseCommand):
             print "Asset %r not found in settings. Did you misspell it?" % aname
 
         meta = ASSETS[atype][aname]
-        pth = join(ASSET_DIR, versioned(aname, meta['version'], True))
+        pth = join(ASSET_DIR, versioned(aname, meta['version'], True, False))
         files = [join(ASSET_DIR, f) for f in meta['files']]
         files_ok = True
 

@@ -5,6 +5,7 @@ Created on 9.4.2012
 '''
 from django import template
 from django.conf import settings
+from django.templatetags.static import static
 
 from versioned_static.conf import ASSETS, USE_MINIFIED, USE_VERSIONING
 
@@ -27,7 +28,6 @@ def asset(atype, aname):
     meta = ASSETS[atype][aname]
 
     return {
-        'url_prefix': meta.get('url_prefix', settings.STATIC_URL),
         'USE_MINIFIED': USE_MINIFIED,
         'type': atype,
         'asset': aname,
@@ -36,12 +36,15 @@ def asset(atype, aname):
 
 
 @register.simple_tag
-def versioned(filename, version, force_version=False):
+def versioned(filename, version, force_version=False, full_path=True):
     """
     Returns filename enriched with version given as second argument.
     """
     if not '.' in filename:
         return None
+    if full_path:
+        filename = static(filename)
+
     if USE_VERSIONING or force_version:
         dotindex = filename.rindex('.')
         return u'%s.%s%s' % (filename[:dotindex], version, filename[dotindex:])
