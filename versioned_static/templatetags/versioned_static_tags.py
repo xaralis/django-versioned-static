@@ -42,11 +42,12 @@ def versioned(filename, version, force_version=False, full_path=True):
     """
     if not '.' in filename:
         return None
-    if full_path:
-        filename = static(filename)
 
     if USE_VERSIONING or force_version:
         dotindex = filename.rindex('.')
-        return u'%s.%s%s' % (filename[:dotindex], version, filename[dotindex:])
-    return filename
+        filename = u'%s.%s%s' % (filename[:dotindex], version, filename[dotindex:])
 
+    if full_path:
+        return static(filename)
+
+    return filename
