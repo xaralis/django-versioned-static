@@ -2,19 +2,19 @@
 {% ifequal type 'css' %}
     {% with meta.media|join:"," as mediatypes %}
         {% if USE_MINIFIED %}
-            <link type="text/css" rel="stylesheet" href="{{ url_prefix }}{% versioned asset meta.version %}" media="{{ mediatypes }}"/>
+            <link type="text/css" rel="stylesheet" href="{% versioned asset meta.version %}" media="{{ mediatypes }}"/>
         {% else %}
             {% for file in meta.files %}
-                <link type="text/css" rel="stylesheet" href="{{ url_prefix }}{% versioned file meta.version %}" media="{{ mediatypes }}"/>
+                <link type="text/css" rel="stylesheet" href="{% versioned file meta.version %}" media="{{ mediatypes }}"/>
             {% endfor %}
         {% endif %}
     {% endwith %}
 {% else %}
     {% if USE_MINIFIED %}
-        <script type="text/javascript" src="{{ url_prefix }}{% versioned asset meta.version %}"></script>
+        <script type="text/javascript" src="{% versioned asset meta.version %}"></script>
     {% else %}
         {% for file in meta.files %}
-            <script type="text/javascript" src="{{ url_prefix }}{% versioned file meta.version %}"></script>
+            <script type="text/javascript" src="{% versioned file meta.version %}"></script>
         {% endfor %}
     {% endif %}
 {% endifequal %}
